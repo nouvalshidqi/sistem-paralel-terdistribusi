@@ -36,7 +36,7 @@ class SplitBufferThreads(threading.Thread):
     def run(self):
         self.req = urllib.request.Request(self.__url,  headers={'Range': 'bytes=%s' % self.__byteRange})
 
-    # fungsi untuk mendapat file data di download
+    # fungsi untuk mendapat data file yang di download
     def getFileData(self):
         return urllib.request.urlopen(self.req).read()
 
@@ -52,10 +52,10 @@ def main(url=None, splitBy=3):
         print("Please Enter some url to begin download.")
         return
     
-    # parsing url dengan '/' sebagai batas
+    # parsing url dengan '/' sebagai batas untuk split
     fileName = url.split('/')[-1]
     
-    # request head dari dari url untuk mendapatkan ukuran byte file
+    # request header dari dari url untuk mendapatkan ukuran byte file
     sizeInBytes = requests.head(url, headers={'Accept-Encoding': 'identity'}).headers.get('content-length', None)
     print("%s bytes to download." % sizeInBytes)
     
